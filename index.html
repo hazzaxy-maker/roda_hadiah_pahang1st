@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Roda Hadiah Pahang 1st</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #02051d;
+      --bg-navy: #000080;
+      --neon-cyan: #00d2ff;
+      --neon-gold: #ffe600;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 30% 35%, #061356 0%, #030829 55%, #010314 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .font-display {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Efek Tajuk Utama Mengikut Rujukan Koperat.jpg */
+    .title-gold {
+      color: #fffac2;
+      text-shadow:
+        0 0 8px rgba(255, 230, 0, 0.9),
+        0 0 22px rgba(255, 196, 0, 0.8),
+        0 0 40px rgba(255, 153, 0, 0.5),
+        0 4px 10px rgba(0, 0, 0, 0.85);
+      letter-spacing: 0.03em;
+    }
+
+    .title-cyan {
+      color: #ffffff;
+      text-shadow:
+        0 0 10px rgba(0, 210, 255, 0.95),
+        0 0 26px rgba(0, 140, 255, 0.85),
+        0 0 48px rgba(0, 102, 255, 0.6),
+        0 4px 10px rgba(0, 0, 0, 0.85);
+      letter-spacing: 0.03em;
+    }
+
+    /* Kotak Berkembar Kod Pengesahan */
+    .cyber-pill {
+      background: linear-gradient(180deg, rgba(4, 15, 58, 0.88) 0%, rgba(2, 8, 34, 0.95) 100%);
+      border: 2px solid #00a8ff;
+      box-shadow:
+        0 0 15px rgba(0, 168, 255, 0.35),
+        inset 0 0 12px rgba(0, 168, 255, 0.2);
+      border-radius: 18px;
+      transition: all 0.25s ease;
+    }
+
+    .cyber-pill:focus-within {
+      border-color: #38bdf8;
+      box-shadow:
+        0 0 24px rgba(56, 189, 248, 0.6),
+        inset 0 0 15px rgba(56, 189, 248, 0.3);
+    }
+
+    /* Rim Luar Roda Bercahaya */
+    .wheel-outer-glow {
+      border-radius: 50%;
+      padding: 14px;
+      background: linear-gradient(135deg, #00e1ff 0%, #0044ff 50%, #00d2ff 100%);
+      box-shadow:
+        0 0 45px rgba(0, 195, 255, 0.55),
+        inset 0 0 25px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Butang PUTAR Tengah Roda */
+    .hub-btn {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #091e5a 0%, #020824 70%, #00020a 100%);
+      border: 4px solid #00d2ff;
+      box-shadow:
+        0 0 25px rgba(0, 210, 255, 0.7),
+        inset 0 0 18px rgba(0, 210, 255, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      position: relative;
+      z-index: 20;
+    }
+
+    .hub-btn:hover:not(:disabled) {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 38px rgba(255, 230, 0, 0.85),
+        inset 0 0 22px rgba(0, 210, 255, 0.65);
+    }
+
+    .hub-btn:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+
+    .hub-btn:disabled {
+      cursor: not-allowed;
+      border-color: #1e3a8a;
+      box-shadow: 0 0 12px rgba(30, 58, 138, 0.4);
+    }
+
+    .hub-btn-unlocked {
+      animation: pulseHub 1.5s infinite;
+      border-color: #ffe600;
+    }
+
+    @keyframes pulseHub {
+      0%, 100% {
+        box-shadow: 0 0 22px rgba(255, 230, 0, 0.8), 0 0 40px rgba(0, 210, 255, 0.6);
+      }
+      50% {
+        box-shadow: 0 0 42px rgba(255, 230, 0, 1), 0 0 70px rgba(0, 210, 255, 0.9);
+      }
+    }
+
+    .putar-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.65rem;
+      color: #fff6a9;
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.9);
+      letter-spacing: 0.08em;
+    }
+
+    /* Anak Panah Hiasan >>> */
+    .chevron-glow {
+      filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.8));
+      animation: chevronPulse 2s infinite ease-in-out;
+    }
+
+    @keyframes chevronPulse {
+      0%, 100% { opacity: 0.65; transform: translateX(0); }
+      50% { opacity: 1; transform: translateX(6px); }
+    }
+  </style>
+</head>
+<body class="relative flex flex-col justify-between min-h-screen">
+
+  <!-- Kanvas Confetti Kemenangan -->
+  <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+  <!-- Bar Kawalan Tersembunyi (Penjuru Kiri Atas) -->
+  <div class="fixed top-4 left-4 z-30 flex items-center gap-2">
+    <button
+      id="openAdminBtn"
+      title="Panel Penyelia & Audit (Alt+A)"
+      class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-950/70 hover:bg-slate-900 border border-cyan-500/30 text-cyan-300/80 hover:text-cyan-200 text-xs font-semibold backdrop-blur-md transition"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      </svg>
+      <span>Penyelia</span>
+    </button>
+
+    <button
+      id="fullscreenBtn"
+      title="Mod Skrin Penuh Kiosk"
+      class="p-2 rounded-xl bg-slate-950/70 hover:bg-slate-900 border border-cyan-500/30 text-cyan-300/80 hover:text-cyan-200 backdrop-blur-md transition"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+      </svg>
+    </button>
+
+    <button
+      id="muteBtn"
+      title="Togol Bunyi"
+      class="p-2 rounded-xl bg-slate-950/70 hover:bg-slate-900 border border-cyan-500/30 text-cyan-300/80 hover:text-cyan-200 backdrop-blur-md transition"
+    >
+      <span id="muteIcon">🔊</span>
+    </button>
+  </div>
+
+  <!-- Susun Atur Utama Kiosk -->
+  <main class="w-full max-w-[1440px] mx-auto my-auto px-6 lg:px-14 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+    <!-- Bahagian Kiri: Garisan Litar, Tajuk, dan Kotak Kod Pengesahan -->
+    <div class="lg:col-span-7 flex flex-col justify-center space-y-6 z-10">
+
+      <!-- Grafik Litar Bercahaya -->
+      <div class="w-full max-w-xl">
+        <svg viewBox="0 0 520 65" class="w-full h-auto overflow-visible">
+          <defs>
+            <filter id="cyanGlow">
+              <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g stroke="#00d2ff" stroke-width="2.2" fill="none" filter="url(#cyanGlow)">
+            <path d="M 10 15 H 140 L 160 35 H 390" />
+            <path d="M 35 35 H 115 L 135 55 H 270 L 290 35" />
+            <path d="M 190 15 H 460" />
+            <circle cx="10" cy="15" r="4" fill="#00d2ff" />
+            <circle cx="35" cy="35" r="4" fill="#00d2ff" />
+            <circle cx="190" cy="15" r="4" fill="#00d2ff" />
+            <circle cx="390" cy="35" r="4" fill="#00d2ff" />
+            <circle cx="460" cy="15" r="4" fill="#00d2ff" />
+          </g>
+          <!-- Bar Segmen Kecil -->
+          <g fill="#00d2ff" filter="url(#cyanGlow)">
+            <rect x="225" y="43" width="10" height="7" transform="skewX(-25)" />
+            <rect x="240" y="43" width="10" height="7" transform="skewX(-25)" />
+            <rect x="255" y="43" width="10" height="7" transform="skewX(-25)" />
+            <rect x="270" y="43" width="10" height="7" transform="skewX(-25)" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Tajuk Utama Kiosk -->
+      <div class="space-y-1">
+        <h1 class="font-display font-black italic text-5xl sm:text-6xl xl:text-7xl leading-none tracking-wide">
+          <span class="block title-gold">RODA HADIAH</span>
+          <span class="block title-cyan mt-2">
+            PAHANG 1<sup class="text-3xl sm:text-4xl xl:text-5xl align-super ml-0.5">ST</sup>
+          </span>
+        </h1>
+      </div>
+
+      <!-- Kotak Berkembar Kod Pengesahan -->
+      <div class="w-full max-w-xl space-y-3.5 pt-2">
+        <!-- Kotak Atas: Label & Petunjuk Status -->
+        <div class="cyber-pill px-6 py-3.5 flex items-center justify-between">
+          <span class="font-display font-bold italic text-xl sm:text-2xl text-white tracking-wide">
+            Kod Pengesahan
+          </span>
+          <span id="codeStatusBadge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-950/90 text-cyan-300 border border-cyan-500/40">
+            Sedia Untuk Pengesahan
+          </span>
+        </div>
+
+        <!-- Kotak Bawah: Input Kod Jotform & Butang Sahkan -->
+        <div class="cyber-pill p-2 flex items-center gap-2">
+          <input
+            id="jotformCodeInput"
+            type="text"
+            autocomplete="off"
+            placeholder="Masukkan Kod Kuiz (Contoh: AP-0001)"
+            class="w-full bg-transparent px-4 py-3 text-lg sm:text-xl font-bold text-white placeholder-blue-300/40 focus:outline-none uppercase tracking-wider"
+          />
+          <button
+            id="verifyCodeBtn"
+            type="button"
+            class="shrink-0 px-6 py-3.5 rounded-xl font-display font-extrabold text-sm sm:text-base uppercase tracking-wider bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 shadow-lg shadow-cyan-500/30 transition cursor-pointer"
+          >
+            Sahkan
+          </button>
+        </div>
+
+        <!-- Mesej Maklum Balas Pengesahan Kod -->
+        <div id="verificationFeedback" class="hidden rounded-xl px-4 py-3 text-sm font-semibold border"></div>
+      </div>
+
+      <!-- Bahagian Bawah Kiri: Anak Panah Hiasan >>> & Penunjuk Slot -->
+      <div class="pt-6 flex items-center gap-6">
+        <div class="flex items-center text-cyan-400 chevron-glow">
+          <svg class="w-24 h-12" viewBox="0 0 120 50" fill="currentColor">
+            <polygon points="5,5 25,5 45,25 25,45 5,45 25,25" />
+            <polygon points="38,5 58,5 78,25 58,45 38,45 58,25" />
+            <polygon points="71,5 91,5 111,25 91,45 71,45 91,25" />
+          </svg>
+        </div>
+
+        <div class="border-l-2 border-cyan-500/40 pl-5 py-1">
+          <div class="text-xs uppercase tracking-widest text-cyan-300/80 font-semibold">Sesi Semasa</div>
+          <div id="publicSlotLabel" class="font-display font-extrabold text-lg text-white tracking-wide">
+            SLOT PAGI
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bahagian Kanan: Roda Putaran & Butang PUTAR -->
+    <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
+      <div class="wheel-outer-glow relative flex items-center justify-center">
+        <!-- Kanvas Roda 12 Sektor -->
+        <canvas id="wheelCanvas" width="540" height="540" class="w-[330px] h-[330px] sm:w-[460px] sm:h-[460px] xl:w-[520px] xl:h-[520px] rounded-full block"></canvas>
+
+        <!-- Hab Tengah PUTAR + Jarum Penunjuk Merah di Kiri (Posisi Jam 9) -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="relative flex items-center justify-center">
+            <!-- Jarum Segitiga Merah Mengarah ke Kiri -->
+            <div
+              class="absolute -left-11 z-10 pointer-events-none"
+              style="filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.9));"
+            >
+              <svg width="56" height="54" viewBox="0 0 56 54">
+                <polygon points="0,27 54,2 54,52" fill="#ff1e27" stroke="#ffffff" stroke-width="2" />
+              </svg>
+            </div>
+
+            <!-- Butang Interaktif PUTAR -->
+            <button
+              id="spinWheelBtn"
+              type="button"
+              disabled
+              class="hub-btn pointer-events-auto"
+              title="Sahkan Kod Pengesahan terlebih dahulu"
+            >
+              <span class="putar-text">PUTAR</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Modal Pengumuman Pemenang (Tanpa Logo & Tanpa Maskot) -->
+  <div id="winnerModal" class="fixed inset-0 z-40 hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
+    <div class="w-full max-w-md rounded-3xl bg-gradient-to-b from-[#071654] to-[#020722] border-2 border-cyan-400 shadow-[0_0_50px_rgba(0,210,255,0.5)] p-8 text-center relative overflow-hidden">
+      <div class="inline-block px-4 py-1 rounded-full bg-yellow-400/20 border border-yellow-400/50 text-yellow-300 text-xs font-extrabold uppercase tracking-widest mb-4">
+        Tahniah, Putaran Berjaya
+      </div>
+
+      <h2 class="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-wide">
+        Anda Memenangi
+      </h2>
+
+      <div class="my-6 py-6 px-4 rounded-2xl bg-slate-950/70 border border-cyan-500/40 shadow-inner">
+        <div id="winnerCategoryBadge" class="text-xs font-bold uppercase tracking-widest text-cyan-300 mb-2"></div>
+        <div id="winnerPrizeName" class="font-display font-black text-3xl sm:text-4xl text-yellow-300 drop-shadow-[0_0_12px_rgba(255,230,0,0.6)]"></div>
+      </div>
+
+      <div class="text-xs text-blue-200/80 space-y-1 mb-6">
+        <div>Kod Tebusan: <span id="winnerCodeText" class="font-bold text-white"></span></div>
+        <div>Masa Rekod: <span id="winnerTimeText" class="font-bold text-white"></span></div>
+      </div>
+
+      <button
+        id="closeWinnerModalBtn"
+        type="button"
+        class="w-full py-4 rounded-xl font-display font-extrabold text-base uppercase tracking-wider bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-300 hover:to-amber-400 text-slate-950 shadow-lg shadow-yellow-500/30 transition cursor-pointer"
+      >
+        Selesai & Kunci Semula
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal Pengesahan PIN Penyelia (Tertutup & Bertopeng) -->
+  <div id="pinModal" class="fixed inset-0 z-40 hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
+    <div class="w-full max-w-md rounded-2xl bg-[#040d38] border border-cyan-500/50 shadow-2xl p-6">
+      <div class="flex items-center justify-between pb-4 border-b border-blue-900">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 rounded-xl bg-blue-950 border border-cyan-500/40 text-cyan-300">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-lg text-white">Akses Panel Penyelia</h3>
+            <p class="text-xs text-blue-300/70">Pengurusan Slot, Status Hadiah, dan Rekod Audit</p>
+          </div>
+        </div>
+        <button id="closePinModalBtn" class="text-blue-300 hover:text-white text-xl font-bold px-2">&times;</button>
+      </div>
+
+      <div class="mt-5 space-y-4">
+        <label class="block text-xs font-semibold uppercase tracking-wider text-blue-200">
+          Masukkan PIN Pentadbir:
+        </label>
+        <div class="relative">
+          <input
+            id="pinInput"
+            type="password"
+            inputmode="numeric"
+            placeholder="••••"
+            class="w-full rounded-xl bg-slate-950 border border-blue-700 focus:border-cyan-400 px-4 py-3.5 text-center text-xl tracking-[0.5em] font-bold text-white focus:outline-none"
+          />
+          <button
+            id="togglePinVisibilityBtn"
+            type="button"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-cyan-300 hover:text-white px-2 py-1"
+          >
+            Tunjuk
+          </button>
+        </div>
+        <div id="pinErrorMsg" class="hidden text-xs font-semibold text-red-400 text-center">
+          PIN tidak sah. Sila cuba semula.
+        </div>
+        <button
+          id="submitPinBtn"
+          type="button"
+          class="w-full py-3.5 rounded-xl font-display font-bold text-sm uppercase tracking-wider bg-blue-600 hover:bg-blue-500 text-white transition cursor-pointer"
+        >
+          Sahkan Akses Penyelia
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Panel Penyelia & Audit -->
+  <div id="adminModal" class="fixed inset-0 z-40 hidden items-center justify-center bg-slate-950/90 backdrop-blur-md p-4 overflow-y-auto">
+    <div class="w-full max-w-5xl rounded-2xl bg-[#040d33] border border-cyan-500/50 shadow-2xl overflow-hidden my-8">
+      <!-- Pengepala Panel Penyelia -->
+      <div class="px-6 py-4 bg-slate-950/80 border-b border-blue-900 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="font-display font-extrabold text-xl text-white">PANEL KAWALAN PENYELIA & AUDIT</h2>
+          <p class="text-xs text-cyan-300/80">Kiosk Roda Hadiah Pahang 1st</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="exportCsvBtn"
+            type="button"
+            class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider transition cursor-pointer"
+          >
+            Muat Turun CSV
+          </button>
+          <button
+            id="closeAdminModalBtn"
+            type="button"
+            class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold uppercase tracking-wider transition cursor-pointer"
+          >
+            Tutup Panel
+          </button>
+        </div>
+      </div>
+
+      <!-- Bar Tab Navigasi Penyelia -->
+      <div class="px-6 pt-3 bg-slate-950/40 border-b border-blue-900 flex gap-2 overflow-x-auto">
+        <button data-tab="tabStock" class="admin-tab-btn px-4 py-2.5 rounded-t-xl font-bold text-xs uppercase tracking-wider bg-blue-700 text-white">
+          1. Status Hadiah & Slot Semasa
+        </button>
+        <button data-tab="tabAudit" class="admin-tab-btn px-4 py-2.5 rounded-t-xl font-bold text-xs uppercase tracking-wider bg-slate-900/70 text-blue-300 hover:text-white">
+          2. Rekod Audit Tebusan (<span id="auditCountBadge">0</span>)
+        </button>
+        <button data-tab="tabSecurity" class="admin-tab-btn px-4 py-2.5 rounded-t-xl font-bold text-xs uppercase tracking-wider bg-slate-900/70 text-blue-300 hover:text-white">
+          3. Keselamatan PIN
+        </button>
+      </div>
+
+      <!-- Kandungan Tab -->
+      <div class="p-6 max-h-[75vh] overflow-y-auto space-y-6">
+
+        <!-- TAB 1: Status Hadiah & Pengurusan Slot -->
+        <div id="tabStock" class="admin-tab-pane space-y-6">
+          <!-- Pilihan Slot Harian -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-950/60 p-4 rounded-xl border border-blue-900">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-cyan-300 mb-2">
+                Pilih Sesi / Slot Harian Aktif:
+              </label>
+              <div class="grid grid-cols-3 gap-2">
+                <button type="button" data-slot="SLOT PAGI" class="slot-select-btn py-2.5 px-3 rounded-lg font-bold text-xs uppercase border transition">
+                  Slot Pagi
+                </button>
+                <button type="button" data-slot="SLOT PETANG" class="slot-select-btn py-2.5 px-3 rounded-lg font-bold text-xs uppercase border transition">
+                  Slot Petang
+                </button>
+                <button type="button" data-slot="SLOT MALAM" class="slot-select-btn py-2.5 px-3 rounded-lg font-bold text-xs uppercase border transition">
+                  Slot Malam
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-cyan-300 mb-2">
+                Mod Kawalan Pelepasan Hadiah Utama:
+              </label>
+              <select
+                id="pacingModeSelect"
+                class="w-full rounded-lg bg-slate-900 border border-blue-700 px-3 py-2.5 text-xs font-semibold text-white focus:outline-none"
+              >
+                <option value="milestone">Milestone Akhir Slot (Pastikan Hadiah Utama Habis Paling Akhir)</option>
+                <option value="normal">Giliran Terbuka Mengikut Baki Semasa</option>
+                <option value="lock_special">Kunci Semua Hadiah Edisi Terhad Sementara</option>
+              </select>
+              <p class="text-[11px] text-blue-300/70 mt-1.5">
+                Urutan Giliran Biasa: Keychain &rarr; Buku Nota. Urutan Edisi Terhad: Mug &rarr; Baju &rarr; Tumbler &rarr; Tote Bag.
+              </p>
+            </div>
+          </div>
+
+          <!-- Ringkasan Kuota Slot Semasa -->
+          <div class="flex flex-wrap items-center justify-between gap-4 bg-blue-950/40 p-4 rounded-xl border border-cyan-500/30">
+            <div class="flex items-center gap-6">
+              <div>
+                <div class="text-xs text-blue-300">Jumlah Baki Slot Ini</div>
+                <div id="adminTotalRemaining" class="font-display font-black text-2xl text-white">108 / 108</div>
+              </div>
+              <div>
+                <div class="text-xs text-blue-300">Baki Hadiah Biasa</div>
+                <div id="adminRegularRemaining" class="font-display font-bold text-xl text-cyan-300">100 unit</div>
+              </div>
+              <div>
+                <div class="text-xs text-blue-300">Baki Edisi Terhad</div>
+                <div id="adminSpecialRemaining" class="font-display font-bold text-xl text-yellow-300">8 unit</div>
+              </div>
+            </div>
+
+            <button
+              id="resetSlotStockBtn"
+              type="button"
+              class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition cursor-pointer"
+            >
+              Muat Semula Kuota Default Slot Ini (108 Unit)
+            </button>
+          </div>
+
+          <!-- Jadual Kawalan Inventori 6 Item -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-blue-800 text-[11px] uppercase tracking-wider text-cyan-300">
+                  <th class="py-3 px-3">Nama Hadiah</th>
+                  <th class="py-3 px-3">Kategori / Label</th>
+                  <th class="py-3 px-3 text-center">Kuota Default</th>
+                  <th class="py-3 px-3 text-center">Baki Semasa</th>
+                  <th class="py-3 px-3 text-right">Laraskan Baki Manual</th>
+                </tr>
+              </thead>
+              <tbody id="adminStockTableBody" class="divide-y divide-blue-900/60 text-sm"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 2: Rekod Audit Tebusan -->
+        <div id="tabAudit" class="admin-tab-pane hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <p class="text-xs text-blue-200">
+              Senarai setiap kod pengesahan Jotform yang telah ditebus berserta masa dan hadiah.
+            </p>
+            <button
+              id="clearAuditLogsBtn"
+              type="button"
+              class="px-3 py-2 rounded-lg bg-red-600/80 hover:bg-red-600 text-white text-xs font-bold uppercase tracking-wider transition cursor-pointer"
+            >
+              Padam Semua Rekod Audit
+            </button>
+          </div>
+
+          <div class="overflow-x-auto rounded-xl border border-blue-900 bg-slate-950/60 max-h-96">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-blue-800 bg-slate-900 text-cyan-300 uppercase">
+                  <th class="py-3 px-4">#</th>
+                  <th class="py-3 px-4">Kod Pengesahan</th>
+                  <th class="py-3 px-4">Sesi / Slot</th>
+                  <th class="py-3 px-4">Hadiah Dimenangi</th>
+                  <th class="py-3 px-4">Kategori</th>
+                  <th class="py-3 px-4">Masa Tebusan</th>
+                </tr>
+              </thead>
+              <tbody id="auditTableBody" class="divide-y divide-blue-900/40"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 3: Keselamatan PIN -->
+        <div id="tabSecurity" class="admin-tab-pane hidden max-w-md space-y-4">
+          <div class="p-4 rounded-xl bg-slate-950/60 border border-blue-900 space-y-4">
+            <h4 class="font-display font-bold text-sm text-cyan-300 uppercase">Tukar PIN Penyelia</h4>
+            <div>
+              <label class="block text-xs text-blue-200 mb-1">PIN Semasa</label>
+              <input id="currentPinChangeInput" type="password" placeholder="••••" class="w-full rounded-lg bg-slate-900 border border-blue-700 px-3 py-2 text-white" />
+            </div>
+            <div>
+              <label class="block text-xs text-blue-200 mb-1">PIN Baharu</label>
+              <input id="newPinChangeInput" type="password" placeholder="••••" class="w-full rounded-lg bg-slate-900 border border-blue-700 px-3 py-2 text-white" />
+            </div>
+            <div id="pinChangeFeedback" class="hidden text-xs font-semibold"></div>
+            <button
+              id="saveNewPinBtn"
+              type="button"
+              class="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition cursor-pointer"
+            >
+              Simpan PIN Baharu
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**************************************************************
+     * KONFIGURASI ASAS & STRUKTUR HADIAH (108 UNIT SETIAP SLOT)
+     **************************************************************/
+    const STORAGE_KEY = 'RODA_PAHANG_1ST_CLEAN_V1';
+
+    const PRIZE_DEFINITIONS = [
+      {
+        id: 'keychain',
+        name: 'Keychain Eksklusif',
+        wheelLabel: 'KEYCHAIN',
+        category: 'Hadiah Biasa',
+        group: 'regular',
+        defaultQty: 50
+      },
+      {
+        id: 'notebook',
+        name: 'Buku Nota Eksklusif',
+        wheelLabel: 'BUKU NOTA',
+        category: 'Hadiah Biasa',
+        group: 'regular',
+        defaultQty: 50
+      },
+      {
+        id: 'mug',
+        name: 'Mug Eksklusif',
+        wheelLabel: 'MUG EKSKLUSIF',
+        category: 'Hadiah Utama (Edisi Terhad)',
+        group: 'special',
+        defaultQty: 2
+      },
+      {
+        id: 'tshirt',
+        name: 'Baju T-shirt Free Size',
+        wheelLabel: 'BAJU T-SHIRT',
+        category: 'Hadiah Utama (Edisi Terhad)',
+        group: 'special',
+        defaultQty: 2
+      },
+      {
+        id: 'tumbler',
+        name: 'Tumbler Premium',
+        wheelLabel: 'TUMBLER',
+        category: 'Hadiah Utama (Edisi Terhad)',
+        group: 'special',
+        defaultQty: 2
+      },
+      {
+        id: 'totebag',
+        name: 'Tote Bag Eksklusif',
+        wheelLabel: 'TOTE BAG',
+        category: 'Edisi Terhad',
+        group: 'special',
+        defaultQty: 2
+      }
+    ];
+
+    // Urutan Bergilir (Round-Robin)
+    const REGULAR_ORDER = ['keychain', 'notebook'];
+    const SPECIAL_ORDER = ['mug', 'tshirt', 'tumbler', 'totebag'];
+
+    // 12 Sektor Roda Berwarna Kontras Tinggi Mengikut Koperat.jpg
+    const WHEEL_SECTORS = [
+      { prizeId: 'keychain', bg: '#84cc16', text: '#051026' },
+      { prizeId: 'mug',      bg: '#38bdf8', text: '#051026' },
+      { prizeId: 'notebook', bg: '#facc15', text: '#051026' },
+      { prizeId: 'tshirt',   bg: '#7c3aed', text: '#ffffff' },
+      { prizeId: 'keychain', bg: '#84cc16', text: '#051026' },
+      { prizeId: 'tumbler',  bg: '#38bdf8', text: '#051026' },
+      { prizeId: 'notebook', bg: '#facc15', text: '#051026' },
+      { prizeId: 'totebag',  bg: '#7c3aed', text: '#ffffff' },
+      { prizeId: 'keychain', bg: '#84cc16', text: '#051026' },
+      { prizeId: 'notebook', bg: '#38bdf8', text: '#051026' },
+      { prizeId: 'keychain', bg: '#facc15', text: '#051026' },
+      { prizeId: 'tumbler',  bg: '#7c3aed', text: '#ffffff' }
+    ];
+
+    // Ambang Putaran (Milestone) untuk 8 unit Edisi Terhad supaya unit terakhir keluar di penghujung slot (108 putaran)
+    const SPECIAL_MILESTONES = [14, 28, 44, 58, 72, 86, 98, 106];
+
+    function createDefaultSlotStock() {
+      const stock = {};
+      PRIZE_DEFINITIONS.forEach(p => {
+        stock[p.id] = p.defaultQty;
+      });
+      return stock;
+    }
+
+    function getInitialState() {
+      return {
+        pin: '2025',
+        currentSlot: 'SLOT PAGI',
+        pacingMode: 'milestone',
+        regularTurnIndex: 0,
+        specialTurnIndex: 0,
+        slots: {
+          'SLOT PAGI': createDefaultSlotStock(),
+          'SLOT PETANG': createDefaultSlotStock(),
+          'SLOT MALAM': createDefaultSlotStock()
+        },
+        auditLogs: []
+      };
+    }
+
+    let appState = loadState();
+    let verifiedCode = null;
+    let isSpinning = false;
+    let isMuted = false;
+    let currentWheelAngle = 0;
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return getInitialState();
+        const parsed = JSON.parse(raw);
+        return { ...getInitialState(), ...parsed };
+      } catch (e) {
+        return getInitialState();
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+    }
+
+    /**************************************************************
+     * SINTESIS AUDIO WEB AUDIO API (LUAR TALIAN 100%)
+     **************************************************************/
+    let audioCtx = null;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) audioCtx = new AudioContextClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTickSound() {
+      if (isMuted) return;
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(680, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.035);
+      gain.gain.setValueAtTime(0.18, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.035);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.04);
+    }
+
+    function playSuccessBeep() {
+      if (isMuted) return;
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      [523.25, 659.25].forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.09);
+        gain.gain.setValueAtTime(0.15, ctx.currentTime + idx * 0.09);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.09 + 0.15);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + idx * 0.09);
+        osc.stop(ctx.currentTime + idx * 0.09 + 0.16);
+      });
+    }
+
+    function playErrorBeep() {
+      if (isMuted) return;
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(190, ctx.currentTime);
+      gain.gain.setValueAtTime(0.18, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.26);
+    }
+
+    function playVictoryFanfare() {
+      if (isMuted) return;
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const notes = [523.25, 659.25, 783.99, 1046.5];
+      notes.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        const start = ctx.currentTime + idx * 0.11;
+        const duration = idx === notes.length - 1 ? 0.45 : 0.18;
+        osc.frequency.setValueAtTime(freq, start);
+        gain.gain.setValueAtTime(0.22, start);
+        gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(start);
+        osc.stop(start + duration + 0.02);
+      });
+    }
+
+    /**************************************************************
+     * LUKISAN RODA KANVAS (12 SEKTOR)
+     **************************************************************/
+    const wheelCanvas = document.getElementById('wheelCanvas');
+    const wheelCtx = wheelCanvas.getContext('2d');
+
+    function drawWheel(angleOffset = 0) {
+      const w = wheelCanvas.width;
+      const h = wheelCanvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      const radius = Math.min(cx, cy) - 6;
+      const numSectors = WHEEL_SECTORS.length;
+      const arc = (2 * Math.PI) / numSectors;
+
+      wheelCtx.clearRect(0, 0, w, h);
+
+      for (let i = 0; i < numSectors; i++) {
+        const sector = WHEEL_SECTORS[i];
+        const prizeObj = PRIZE_DEFINITIONS.find(p => p.id === sector.prizeId);
+        const startAngle = angleOffset + i * arc;
+        const endAngle = startAngle + arc;
+
+        wheelCtx.beginPath();
+        wheelCtx.moveTo(cx, cy);
+        wheelCtx.arc(cx, cy, radius, startAngle, endAngle);
+        wheelCtx.closePath();
+        wheelCtx.fillStyle = sector.bg;
+        wheelCtx.fill();
+
+        wheelCtx.lineWidth = 2;
+        wheelCtx.strokeStyle = 'rgba(2, 8, 36, 0.45)';
+        wheelCtx.stroke();
+
+        // Teks Label Sektor
+        wheelCtx.save();
+        wheelCtx.translate(cx, cy);
+        wheelCtx.rotate(startAngle + arc / 2);
+        wheelCtx.textAlign = 'right';
+        wheelCtx.fillStyle = sector.text;
+        wheelCtx.font = '800 18px Montserrat, sans-serif';
+        wheelCtx.fillText(prizeObj ? prizeObj.wheelLabel : 'HADIAH', radius - 26, 6);
+        wheelCtx.restore();
+      }
+    }
+
+    /**************************************************************
+     * LOGIK PEMILIHAN HADIAH BERGILIR & MILESTONE PACING
+     **************************************************************/
+    function getCurrentSlotStock() {
+      return appState.slots[appState.currentSlot];
+    }
+
+    function getNextPrizeFromGroup(orderArray, turnKey, stock) {
+      const len = orderArray.length;
+      for (let step = 0; step < len; step++) {
+        const idx = (appState[turnKey] + step) % len;
+        const candidateId = orderArray[idx];
+        if ((stock[candidateId] || 0) > 0) {
+          appState[turnKey] = (idx + 1) % len;
+          return candidateId;
+        }
+      }
+      return null;
+    }
+
+    function selectWinningPrizeId() {
+      const stock = getCurrentSlotStock();
+      const regularAvailable = REGULAR_ORDER.reduce((sum, id) => sum + (stock[id] || 0), 0);
+      const specialAvailable = SPECIAL_ORDER.reduce((sum, id) => sum + (stock[id] || 0), 0);
+      const totalAvailable = regularAvailable + specialAvailable;
+
+      if (totalAvailable <= 0) return null;
+
+      // Jika hadiah biasa sudah habis, berikan hadiah edisi terhad
+      if (regularAvailable === 0) {
+        return getNextPrizeFromGroup(SPECIAL_ORDER, 'specialTurnIndex', stock);
+      }
+
+      // Jika hadiah edisi terhad habis atau dikunci manual
+      if (specialAvailable === 0 || appState.pacingMode === 'lock_special') {
+        return getNextPrizeFromGroup(REGULAR_ORDER, 'regularTurnIndex', stock);
+      }
+
+      const defaultTotal = 108;
+      const defaultSpecial = 8;
+      const spinsCompletedInSlot = defaultTotal - totalAvailable + 1;
+      const specialsGivenSoFar = defaultSpecial - specialAvailable;
+
+      let shouldGiveSpecial = false;
+
+      if (appState.pacingMode === 'milestone') {
+        // Semak ambang milestone supaya hadiah utama kekal sehingga akhir slot
+        const nextMilestoneSpin = SPECIAL_MILESTONES[specialsGivenSoFar] || 106;
+        if (spinsCompletedInSlot >= nextMilestoneSpin) {
+          shouldGiveSpecial = true;
+        }
+      } else {
+        // Mod normal mengikut nisbah baki
+        const prob = specialAvailable / totalAvailable;
+        if (Math.random() < prob) {
+          shouldGiveSpecial = true;
+        }
+      }
+
+      if (shouldGiveSpecial) {
+        const pickedSpecial = getNextPrizeFromGroup(SPECIAL_ORDER, 'specialTurnIndex', stock);
+        if (pickedSpecial) return pickedSpecial;
+      }
+
+      return getNextPrizeFromGroup(REGULAR_ORDER, 'regularTurnIndex', stock);
+    }
+
+    /**************************************************************
+     * PENGESAHAN KOD JOTFORM (ANTI-DUPLIKASI)
+     **************************************************************/
+    const jotformCodeInput = document.getElementById('jotformCodeInput');
+    const verifyCodeBtn = document.getElementById('verifyCodeBtn');
+    const verificationFeedback = document.getElementById('verificationFeedback');
+    const codeStatusBadge = document.getElementById('codeStatusBadge');
+    const spinWheelBtn = document.getElementById('spinWheelBtn');
+
+    function showFeedback(message, type) {
+      verificationFeedback.classList.remove('hidden', 'bg-red-950/90', 'border-red-500', 'text-red-200', 'bg-emerald-950/90', 'border-emerald-400', 'text-emerald-200');
+      if (type === 'error') {
+        verificationFeedback.classList.add('bg-red-950/90', 'border-red-500', 'text-red-200');
+      } else {
+        verificationFeedback.classList.add('bg-emerald-950/90', 'border-emerald-400', 'text-emerald-200');
+      }
+      verificationFeedback.textContent = message;
+    }
+
+    function verifyJotformCode() {
+      if (isSpinning) return;
+
+      const rawCode = jotformCodeInput.value.trim().toUpperCase();
+      if (!rawCode) {
+        playErrorBeep();
+        showFeedback('Sila masukkan Kod Pengesahan kuiz terlebih dahulu.', 'error');
+        return;
+      }
+
+      // Semak sama ada baki stok slot semasa masih ada
+      const stock = getCurrentSlotStock();
+      const totalLeft = Object.values(stock).reduce((a, b) => a + b, 0);
+      if (totalLeft <= 0) {
+        playErrorBeep();
+        showFeedback('Kuota hadiah bagi ' + appState.currentSlot + ' telah habis ditebus.', 'error');
+        return;
+      }
+
+      // Semak duplikasi dalam rekod audit
+      const duplicateRecord = appState.auditLogs.find(item => item.code.toUpperCase() === rawCode);
+      if (duplicateRecord) {
+        playErrorBeep();
+        verifiedCode = null;
+        spinWheelBtn.disabled = true;
+        spinWheelBtn.classList.remove('hub-btn-unlocked');
+        codeStatusBadge.textContent = 'Kod Ditolak (Duplikasi)';
+        codeStatusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-950 text-red-300 border border-red-500/50';
+        showFeedback(
+          'Peringatan: Kod ' + rawCode + ' telah pun ditebus pada ' + duplicateRecord.time + ' (' + duplicateRecord.prizeName + '). Satu peserta hanya dibenarkan sekali putaran.',
+          'error'
+        );
+        return;
+      }
+
+      // Kod Sah
+      playSuccessBeep();
+      verifiedCode = rawCode;
+      spinWheelBtn.disabled = false;
+      spinWheelBtn.classList.add('hub-btn-unlocked');
+      codeStatusBadge.textContent = 'Kod Disahkan: ' + rawCode;
+      codeStatusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-950 text-emerald-300 border border-emerald-400/50';
+      showFeedback('Kod ' + rawCode + ' sah! Sila tekan butang PUTAR di tengah roda.', 'success');
+    }
+
+    verifyCodeBtn.addEventListener('click', verifyJotformCode);
+    jotformCodeInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') verifyJotformCode();
+    });
+
+    /**************************************************************
+     * PUTARAN RODA & PENENTUAN PEMENANG (JARUM DI POSISI JAM 9 / PI)
+     **************************************************************/
+    spinWheelBtn.addEventListener('click', () => {
+      if (isSpinning || !verifiedCode) return;
+
+      const winningPrizeId = selectWinningPrizeId();
+      if (!winningPrizeId) {
+        playErrorBeep();
+        showFeedback('Tiada baki hadiah untuk slot semasa.', 'error');
+        return;
+      }
+
+      isSpinning = true;
+      spinWheelBtn.disabled = true;
+      spinWheelBtn.classList.remove('hub-btn-unlocked');
+      verifyCodeBtn.disabled = true;
+      jotformCodeInput.disabled = true;
+
+      // Cari semua indeks sektor yang sepadan dengan hadiah yang dipilih
+      const matchingSectorIndices = [];
+      WHEEL_SECTORS.forEach((sec, idx) => {
+        if (sec.prizeId === winningPrizeId) matchingSectorIndices.push(idx);
+      });
+
+      const chosenSectorIndex = matchingSectorIndices[Math.floor(Math.random() * matchingSectorIndices.length)];
+      const numSectors = WHEEL_SECTORS.length;
+      const arc = (2 * Math.PI) / numSectors;
+
+      // Jarum merah berada pada sudut PI (sebelah kiri hab PUTAR)
+      const pointerAngle = Math.PI;
+      const randomOffsetInsideSector = (0.22 + Math.random() * 0.56) * arc;
+      const targetAngleMod = (pointerAngle - (chosenSectorIndex * arc + randomOffsetInsideSector) + 2 * Math.PI * 10) % (2 * Math.PI);
+
+      const currentMod = ((currentWheelAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      let deltaAngle = targetAngleMod - currentMod;
+      if (deltaAngle < 0) deltaAngle += 2 * Math.PI;
+
+      const fullRotations = (6 + Math.floor(Math.random() * 3)) * 2 * Math.PI;
+      const startAngle = currentWheelAngle;
+      const finalAngle = startAngle + fullRotations + deltaAngle;
+
+      const duration = 5200;
+      const startTime = performance.now();
+      let lastTickSector = -1;
+
+      function animateWheel(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease-out quartic
+        const eased = 1 - Math.pow(1 - progress, 4);
+
+        currentWheelAngle = startAngle + (finalAngle - startAngle) * eased;
+        drawWheel(currentWheelAngle);
+
+        // Kira detikan bunyi setiap kali sempadan sektor melintasi jarum kiri (PI)
+        const normalizedAtPointer = ((pointerAngle - currentWheelAngle) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+        const currentSectorAtPointer = Math.floor(normalizedAtPointer / arc);
+        if (currentSectorAtPointer !== lastTickSector) {
+          lastTickSector = currentSectorAtPointer;
+          playTickSound();
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(animateWheel);
+        } else {
+          finalizeSpin(winningPrizeId);
+        }
+      }
+
+      requestAnimationFrame(animateWheel);
+    });
+
+    function finalizeSpin(winningPrizeId) {
+      const stock = getCurrentSlotStock();
+      if (stock[winningPrizeId] > 0) {
+        stock[winningPrizeId] -= 1;
+      }
+
+      const prizeObj = PRIZE_DEFINITIONS.find(p => p.id === winningPrizeId);
+      const nowStr = new Date().toLocaleString('ms-MY', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+
+      const logEntry = {
+        id: appState.auditLogs.length + 1,
+        code: verifiedCode,
+        slot: appState.currentSlot,
+        prizeId: winningPrizeId,
+        prizeName: prizeObj.name,
+        category: prizeObj.category,
+        time: nowStr
+      };
+
+      appState.auditLogs.unshift(logEntry);
+      saveState();
+      updatePublicUI();
+
+      playVictoryFanfare();
+      launchConfetti();
+
+      // Papar Modal Pemenang
+      document.getElementById('winnerCategoryBadge').textContent = prizeObj.category;
+      document.getElementById('winnerPrizeName').textContent = prizeObj.name;
+      document.getElementById('winnerCodeText').textContent = verifiedCode;
+      document.getElementById('winnerTimeText').textContent = nowStr;
+
+      const winnerModal = document.getElementById('winnerModal');
+      winnerModal.classList.remove('hidden');
+      winnerModal.classList.add('flex');
+
+      // Kunci semula untuk peserta seterusnya
+      verifiedCode = null;
+      isSpinning = false;
+      verifyCodeBtn.disabled = false;
+      jotformCodeInput.disabled = false;
+      jotformCodeInput.value = '';
+      verificationFeedback.classList.add('hidden');
+      codeStatusBadge.textContent = 'Sedia Untuk Pengesahan';
+      codeStatusBadge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-950/90 text-cyan-300 border border-cyan-500/40';
+    }
+
+    document.getElementById('closeWinnerModalBtn').addEventListener('click', () => {
+      const winnerModal = document.getElementById('winnerModal');
+      winnerModal.classList.add('hidden');
+      winnerModal.classList.remove('flex');
+      jotformCodeInput.focus();
+    });
+
+    /**************************************************************
+     * CONFETTI KEMENANGAN
+     **************************************************************/
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const confettiCtx = confettiCanvas.getContext('2d');
+    let confettiParticles = [];
+
+    function resizeConfetti() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeConfetti);
+    resizeConfetti();
+
+    function launchConfetti() {
+      confettiParticles = [];
+      const colors = ['#ffe600', '#00d2ff', '#84cc16', '#ffffff', '#a855f7'];
+      for (let i = 0; i < 110; i++) {
+        confettiParticles.push({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+          vx: (Math.random() - 0.5) * 18,
+          vy: (Math.random() - 0.8) * 16,
+          size: 6 + Math.random() * 6,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rot: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 12,
+          life: 1
+        });
+      }
+      requestAnimationFrame(stepConfetti);
+    }
+
+    function stepConfetti() {
+      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiParticles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.35;
+        p.rot += p.vRot;
+        p.life -= 0.012;
+
+        confettiCtx.save();
+        confettiCtx.globalAlpha = Math.max(p.life, 0);
+        confettiCtx.translate(p.x, p.y);
+        confettiCtx.rotate((p.rot * Math.PI) / 180);
+        confettiCtx.fillStyle = p.color;
+        confettiCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        confettiCtx.restore();
+      });
+      confettiParticles = confettiParticles.filter(p => p.life > 0);
+      if (confettiParticles.length > 0) {
+        requestAnimationFrame(stepConfetti);
+      }
+    }
+
+    /**************************************************************
+     * PANEL PENYELIA & AUDIT (DILINDUNGI PIN)
+     **************************************************************/
+    const pinModal = document.getElementById('pinModal');
+    const pinInput = document.getElementById('pinInput');
+    const pinErrorMsg = document.getElementById('pinErrorMsg');
+    const adminModal = document.getElementById('adminModal');
+
+    function openPinPrompt() {
+      pinInput.value = '';
+      pinInput.type = 'password';
+      document.getElementById('togglePinVisibilityBtn').textContent = 'Tunjuk';
+      pinErrorMsg.classList.add('hidden');
+      pinModal.classList.remove('hidden');
+      pinModal.classList.add('flex');
+      setTimeout(() => pinInput.focus(), 80);
+    }
+
+    document.getElementById('openAdminBtn').addEventListener('click', openPinPrompt);
+    window.addEventListener('keydown', e => {
+      if (e.altKey && (e.key === 'a' || e.key === 'A')) {
+        e.preventDefault();
+        openPinPrompt();
+      }
+    });
+
+    document.getElementById('closePinModalBtn').addEventListener('click', () => {
+      pinModal.classList.add('hidden');
+      pinModal.classList.remove('flex');
+    });
+
+    document.getElementById('togglePinVisibilityBtn').addEventListener('click', function () {
+      if (pinInput.type === 'password') {
+        pinInput.type = 'text';
+        this.textContent = 'Sembunyi';
+      } else {
+        pinInput.type = 'password';
+        this.textContent = 'Tunjuk';
+      }
+    });
+
+    function verifyAdminPin() {
+      if (pinInput.value === appState.pin) {
+        pinModal.classList.add('hidden');
+        pinModal.classList.remove('flex');
+        renderAdminPanel();
+        adminModal.classList.remove('hidden');
+        adminModal.classList.add('flex');
+      } else {
+        playErrorBeep();
+        pinErrorMsg.classList.remove('hidden');
+      }
+    }
+
+    document.getElementById('submitPinBtn').addEventListener('click', verifyAdminPin);
+    pinInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') verifyAdminPin();
+    });
+
+    document.getElementById('closeAdminModalBtn').addEventListener('click', () => {
+      adminModal.classList.add('hidden');
+      adminModal.classList.remove('flex');
+    });
+
+    // Navigasi Tab Penyelia
+    document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-tab');
+        document.querySelectorAll('.admin-tab-pane').forEach(pane => pane.classList.add('hidden'));
+        document.getElementById(target).classList.remove('hidden');
+
+        document.querySelectorAll('.admin-tab-btn').forEach(b => {
+          b.className = 'admin-tab-btn px-4 py-2.5 rounded-t-xl font-bold text-xs uppercase tracking-wider bg-slate-900/70 text-blue-300 hover:text-white';
+        });
+        btn.className = 'admin-tab-btn px-4 py-2.5 rounded-t-xl font-bold text-xs uppercase tracking-wider bg-blue-700 text-white';
+      });
+    });
+
+    function updatePublicUI() {
+      document.getElementById('publicSlotLabel').textContent = appState.currentSlot;
+    }
+
+    function renderAdminPanel() {
+      updatePublicUI();
+
+      // Kemas kini butang slot aktif
+      document.querySelectorAll('.slot-select-btn').forEach(btn => {
+        const slotName = btn.getAttribute('data-slot');
+        if (slotName === appState.currentSlot) {
+          btn.className = 'slot-select-btn py-2.5 px-3 rounded-lg font-bold text-xs uppercase border bg-cyan-500 text-slate-950 border-cyan-300 shadow';
+        } else {
+          btn.className = 'slot-select-btn py-2.5 px-3 rounded-lg font-bold text-xs uppercase border bg-slate-900 text-blue-200 border-blue-800 hover:bg-slate-800';
+        }
+      });
+
+      document.getElementById('pacingModeSelect').value = appState.pacingMode;
+
+      const stock = getCurrentSlotStock();
+      const regularRem = REGULAR_ORDER.reduce((s, id) => s + (stock[id] || 0), 0);
+      const specialRem = SPECIAL_ORDER.reduce((s, id) => s + (stock[id] || 0), 0);
+      const totalRem = regularRem + specialRem;
+
+      document.getElementById('adminTotalRemaining').textContent = totalRem + ' / 108';
+      document.getElementById('adminRegularRemaining').textContent = regularRem + ' unit';
+      document.getElementById('adminSpecialRemaining').textContent = specialRem + ' unit';
+
+      // Bina Jadual Stok
+      const tbody = document.getElementById('adminStockTableBody');
+      tbody.innerHTML = '';
+
+      PRIZE_DEFINITIONS.forEach(prize => {
+        const qty = stock[prize.id] || 0;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="py-3 px-3 font-bold text-white">${prize.name}</td>
+          <td class="py-3 px-3 text-xs text-cyan-300">${prize.category}</td>
+          <td class="py-3 px-3 text-center text-blue-200">${prize.defaultQty}</td>
+          <td class="py-3 px-3 text-center">
+            <span class="px-3 py-1 rounded-full font-extrabold text-xs ${qty > 0 ? 'bg-emerald-950 text-emerald-300 border border-emerald-500/40' : 'bg-red-950 text-red-300 border border-red-500/40'}">
+              ${qty} unit
+            </span>
+          </td>
+          <td class="py-3 px-3 text-right space-x-1">
+            <button data-act="dec" data-id="${prize.id}" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs cursor-pointer">-1</button>
+            <button data-act="inc" data-id="${prize.id}" class="px-2.5 py-1 rounded bg-blue-700 hover:bg-blue-600 text-white font-bold text-xs cursor-pointer">+1</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      tbody.querySelectorAll('button[data-act]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const act = btn.getAttribute('data-act');
+          const id = btn.getAttribute('data-id');
+          if (act === 'inc') stock[id] = (stock[id] || 0) + 1;
+          if (act === 'dec' && (stock[id] || 0) > 0) stock[id] -= 1;
+          saveState();
+          renderAdminPanel();
+        });
+      });
+
+      // Bina Jadual Audit
+      document.getElementById('auditCountBadge').textContent = appState.auditLogs.length;
+      const auditBody = document.getElementById('auditTableBody');
+      auditBody.innerHTML = '';
+
+      if (appState.auditLogs.length === 0) {
+        auditBody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-blue-300/60">Belum ada rekod tebusan disimpan.</td></tr>`;
+      } else {
+        appState.auditLogs.forEach(log => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td class="py-2.5 px-4 text-blue-300">${log.id}</td>
+            <td class="py-2.5 px-4 font-bold text-white">${log.code}</td>
+            <td class="py-2.5 px-4 text-cyan-300">${log.slot}</td>
+            <td class="py-2.5 px-4 font-bold text-yellow-300">${log.prizeName}</td>
+            <td class="py-2.5 px-4 text-blue-200">${log.category}</td>
+            <td class="py-2.5 px-4 text-blue-300">${log.time}</td>
+          `;
+          auditBody.appendChild(row);
+        });
+      }
+    }
+
+    // Pertukaran Slot Harian
+    document.querySelectorAll('.slot-select-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        appState.currentSlot = btn.getAttribute('data-slot');
+        saveState();
+        renderAdminPanel();
+      });
+    });
+
+    // Pertukaran Mod Pacing
+    document.getElementById('pacingModeSelect').addEventListener('change', e => {
+      appState.pacingMode = e.target.value;
+      saveState();
+    });
+
+    // Muat Semula Kuota Default Slot Semasa
+    document.getElementById('resetSlotStockBtn').addEventListener('click', () => {
+      if (confirm('Tetapkan semula baki stok ' + appState.currentSlot + ' kepada kuota asal (108 unit)?')) {
+        appState.slots[appState.currentSlot] = createDefaultSlotStock();
+        saveState();
+        renderAdminPanel();
+      }
+    });
+
+    // Padam Semua Rekod Audit
+    document.getElementById('clearAuditLogsBtn').addEventListener('click', () => {
+      if (confirm('Adakah anda pasti mahu memadamkan semua rekod audit tebusan?')) {
+        appState.auditLogs = [];
+        saveState();
+        renderAdminPanel();
+      }
+    });
+
+    // Eksport CSV
+    document.getElementById('exportCsvBtn').addEventListener('click', () => {
+      if (appState.auditLogs.length === 0) {
+        alert('Tiada rekod audit untuk dimuat turun.');
+        return;
+      }
+      const headers = ['No', 'Kod_Pengesahan', 'Slot', 'Hadiah', 'Kategori', 'Masa_Tebusan'];
+      const rows = appState.auditLogs.map(r => [
+        r.id,
+        `"${r.code}"`,
+        `"${r.slot}"`,
+        `"${r.prizeName}"`,
+        `"${r.category}"`,
+        `"${r.time}"`
+      ]);
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', 'Audit_Roda_Hadiah_Pahang_1st.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+
+    // Tukar PIN Penyelia
+    document.getElementById('saveNewPinBtn').addEventListener('click', () => {
+      const curr = document.getElementById('currentPinChangeInput').value;
+      const next = document.getElementById('newPinChangeInput').value.trim();
+      const fb = document.getElementById('pinChangeFeedback');
+      fb.classList.remove('hidden', 'text-red-400', 'text-emerald-400');
+
+      if (curr !== appState.pin) {
+        fb.textContent = 'PIN semasa tidak tepat.';
+        fb.classList.add('text-red-400');
+        return;
+      }
+      if (next.length < 4) {
+        fb.textContent = 'PIN baharu mestilah sekurang-kurangnya 4 aksara.';
+        fb.classList.add('text-red-400');
+        return;
+      }
+      appState.pin = next;
+      saveState();
+      document.getElementById('currentPinChangeInput').value = '';
+      document.getElementById('newPinChangeInput').value = '';
+      fb.textContent = 'PIN Penyelia berjaya dikemas kini.';
+      fb.classList.add('text-emerald-400');
+    });
+
+    // Skrin Penuh & Togol Bunyi
+    document.getElementById('fullscreenBtn').addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    document.getElementById('muteBtn').addEventListener('click', () => {
+      isMuted = !isMuted;
+      document.getElementById('muteIcon').textContent = isMuted ? '🔇' : '🔊';
+    });
+
+    // Permulaan Aplikasi
+    drawWheel(currentWheelAngle);
+    updatePublicUI();
+  </script>
+</body>
+</html>
